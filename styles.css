@@ -176,7 +176,7 @@ header.sticky {
 
 /* Home Section */
 #home {
-    background-image: url(bg1.jpg);
+    background-image: url(src/bg1.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

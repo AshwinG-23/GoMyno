@@ -54,7 +54,6 @@ navLinks.forEach(link => {
 
 // Main Events Slider
 let currentSlide = 0;
-let slideInterval;
 
 function showSlide(index) {
     if (index < 0) {
@@ -80,22 +79,13 @@ function showSlide(index) {
     resetImageNavigation(currentSlide);
 }
 
-function startSlideInterval() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(() => {
-        showSlide(currentSlide + 1);
-    }, 5000);
-}
-
 // Next and Previous buttons for main events
 nextBtn.addEventListener('click', () => {
     showSlide(currentSlide + 1);
-    startSlideInterval();
 });
 
 prevBtn.addEventListener('click', () => {
     showSlide(currentSlide - 1);
-    startSlideInterval();
 });
 
 // Indicators for main events
@@ -103,7 +93,6 @@ indicators.forEach(indicator => {
     indicator.addEventListener('click', () => {
         const index = parseInt(indicator.getAttribute('data-index'));
         showSlide(index);
-        startSlideInterval();
     });
 });
 
@@ -265,22 +254,12 @@ teamCards.forEach(card => {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Start main slider
-    startSlideInterval();
-    
     // Initialize image navigation for events
     initEventImageNavigation();
     
     // Initialize first slide
     showSlide(0);
 });
-
-// Pause main slider when hovering over events container
-const eventsContainer = document.querySelector('.events-container');
-if (eventsContainer) {
-    eventsContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    eventsContainer.addEventListener('mouseleave', startSlideInterval);
-}
 
 // Handle window resize
 window.addEventListener('resize', () => {
